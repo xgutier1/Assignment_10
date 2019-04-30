@@ -1,12 +1,12 @@
 ﻿Import-Module activedirectory
   
-$input = Import-csv -Path C:\Users\Administrator\Desktop\newusers.csv -Delimiter ";"
+$input = Import-csv -Path C:\Users\Administrator\Desktop\users.csv
 ForEach($user in $input){
     $uname = $user.Username
     $fname = $user.Firstname
     $lname = $user.Lastname
     $description = $user.Department
-    $OU = $user.OrganizationalUnit
+    $OU = $user.OUPath
     $paswd = $user.password
     $act = $user.action
 
@@ -16,7 +16,6 @@ ForEach($user in $input){
         -Name "$fname $lname" `
         -GivenName $fname `
         -Surname $lname `
-        -Enabled $True `
         -DisplayName "$lname, $fname" `
         -Path $OU `
         -Description $description `
